@@ -1,19 +1,18 @@
-package Factorial;
+package sob.fibonacci;
 
-public class FactorialIteratively implements Runnable {
+public class FibonacciRecursion implements Runnable {
     private int score;
     private int range;
     private Thread thread = null;
 
-    public FactorialIteratively(int range) {
+    public FibonacciRecursion(int range) {
         this.range = range;
     }
 
     @Override
     public void run() {
-        if(thread == null)
-        {
-            thread = new Thread (this, "FactorialIteratively");
+        if (thread == null) {
+            thread = new Thread(this, "FibonacciRecursion");
             thread.start();
 
             score = this.calculate(range);
@@ -21,15 +20,12 @@ public class FactorialIteratively implements Runnable {
     }
 
     private int calculate(int value) {
-        if(value == 0) {
+        if (value == 0) {
             return 0;
+        } else if (value == 1) {
+            return 1;
         } else {
-            int  temp = 1;
-            while(value > 0) {
-                temp *= value;
-                --value;
-            }
-            return temp;
+            return calculate(value - 1) + calculate(value - 2);
         }
     }
 
